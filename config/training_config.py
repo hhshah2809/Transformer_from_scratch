@@ -1,0 +1,9 @@
+BATCH_SIZE = 16
+
+LEARNING_RATE = 3e-4
+
+EPOCHS = 10
+
+DEVICE = "cuda"
+
+CHECKPOINT_DIR = "checkpoints"

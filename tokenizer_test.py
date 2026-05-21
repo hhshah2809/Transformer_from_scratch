@@ -1,8 +1,8 @@
-from tokenizer.config import TokenizerConfig
-from tokenizer.vocabulary import Vocabulary
-from tokenizer.tokenizer import Tokenizer
-from tokenizer.preprocessor import TextPreprocessor
-from tokenizer.dataset_loader import DatasetLoader
+from legacy.tokenizer.config import TokenizerConfig
+from legacy.tokenizer.vocabulary import Vocabulary
+from legacy.tokenizer.tokenizer import Tokenizer
+from legacy.tokenizer.preprocessor import TextPreprocessor
+from legacy.tokenizer.dataset_loader import DatasetLoader
 
 
 def main():

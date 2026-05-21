@@ -7,3 +7,6 @@ requests
 scikit-learn
 fastapi
 uvicorn
+sentencepiece
+datasets
+tqdm
