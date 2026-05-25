@@ -1,4 +1,48 @@
 import os
+import sentencepiece as spm
+
+
+class SentencePieceTokenizer:
+
+    def __init__(self, model_path=None):
+
+        if model_path is None:
+            model_path = os.path.join("data", "tokenizer.model")
+
+        if not os.path.exists(model_path):
+            raise FileNotFoundError(f"SentencePiece model not found at {model_path}")
+
+        self.sp = spm.SentencePieceProcessor()
+        self.sp.load(model_path)
+
+    def encode(self, text):
+        return self.sp.encode(text, out_type=int)
+
+    def decode(self, ids):
+        return self.sp.decode(ids)
+
+    def vocab_size(self):
+        return self.sp.get_piece_size()
+
+    def bos_id(self):
+        # SentencePiece may not have BOS/EOS; use special ids if present
+        try:
+            return self.sp.piece_to_id("<s>")
+        except Exception:
+            return None
+
+    def eos_id(self):
+        try:
+            return self.sp.piece_to_id("</s>")
+        except Exception:
+            return None
+
+    def pad_id(self):
+        try:
+            return self.sp.piece_to_id("<pad>")
+        except Exception:
+            return None
+import os
 from typing import List, Optional
 
 import sentencepiece as spm

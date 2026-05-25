@@ -1,5 +1,35 @@
 import os
 import sentencepiece as spm
+from ml.config.model_config import VOCAB_SIZE
+from ml.config.training_config import DATA_DIR
+
+
+def main():
+    os.makedirs(DATA_DIR, exist_ok=True)
+    input_file = os.path.join(DATA_DIR, "tinystories.txt")
+    model_prefix = os.path.join(DATA_DIR, "tokenizer")
+
+    if not os.path.exists(input_file):
+        raise FileNotFoundError(f"Input file not found: {input_file}")
+
+    spm.SentencePieceTrainer.Train(
+        input=input_file,
+        model_prefix=model_prefix,
+        vocab_size=VOCAB_SIZE,
+        model_type="bpe",
+        character_coverage=1.0,
+        pad_id=0,
+        bos_id=1,
+        eos_id=2,
+    )
+
+    print(f"Trained tokenizer saved to {model_prefix}.model and {model_prefix}.vocab")
+
+
+if __name__ == "__main__":
+    main()
+import os
+import sentencepiece as spm
 
 
 def main(
