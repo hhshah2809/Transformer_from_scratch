@@ -5,7 +5,7 @@ from torch.cuda.amp import autocast, GradScaler
 from torch.nn.utils import clip_grad_norm_
 from tqdm import tqdm
 from ml.config.training_config import DEVICE, GRADIENT_CLIP_VALUE
-
+from tqdm import tqdm
 
 class Trainer:
     def __init__(self, model, optimizer, loss_fn, device=None):
